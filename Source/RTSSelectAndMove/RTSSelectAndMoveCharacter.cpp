@@ -49,8 +49,9 @@ ARTSSelectAndMoveCharacter::ARTSSelectAndMoveCharacter()
 	{
 		CursorToWorld->SetDecalMaterial(DecalMaterialAsset.Object);
 	}
-	CursorToWorld->DecalSize = FVector(16.0f, 32.0f, 32.0f);
+	CursorToWorld->DecalSize = FVector(32.0f, 32.0f, 32.0f);
 	CursorToWorld->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f).Quaternion());
+	CursorToWorld->SetVisibility(false);
 
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
@@ -87,4 +88,14 @@ void ARTSSelectAndMoveCharacter::Tick(float DeltaSeconds)
 			CursorToWorld->SetWorldRotation(CursorR);
 		}
 	}
+}
+
+void ARTSSelectAndMoveCharacter::SetSelected()
+{
+	CursorToWorld->SetVisibility(true);
+}
+
+void ARTSSelectAndMoveCharacter::SetDeselected()
+{
+	CursorToWorld->SetVisibility(false);
 }

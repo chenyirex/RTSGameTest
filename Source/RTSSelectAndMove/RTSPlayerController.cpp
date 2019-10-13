@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "RTSPlayerController.h"
 #include "RTSSelectAndMove.h"
+#include "Blueprint/AIBlueprintHelperLibrary.h"
 
 ARTSPlayerController::ARTSPlayerController() {
 	bShowMouseCursor = true;
@@ -34,8 +35,22 @@ void ARTSPlayerController::SelectionPressed()
 void ARTSPlayerController::SelectionReleased() 
 {
 	HUDPtr->bStartSelecting = false;
+	SelectedActors = HUDPtr->FoundActors;
 }
 
-void ARTSPlayerController::MoveReleased() {
+void ARTSPlayerController::MoveReleased() 
+{
+	if (SelectedActors.Num() > 0) {
+		for (int32 i = 0; i < SelectedActors.Num(); i++) {
+			FHitResult Hit;
+			GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false , Hit);
+			FVector MoveLocation = Hit.Location + FVector(i / 2 * 100, i % 2 * 100, 0);
 
+			AController * Controller = SelectedActors[i]->GetController();
+			UE_LOG(LogTemp, Warning, TEXT("Controller: %s"), *Controller->GetName())
+		
+			UAIBlueprintHelperLibrary::SimpleMoveToLocation(SelectedActors[i]->GetController(), MoveLocation);
+			DrawDebugSphere(GetWorld(), MoveLocation, 25, 10, FColor::Red, 3);
+		}
+	}
 }

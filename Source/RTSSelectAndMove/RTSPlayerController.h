@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "RTSHUD.h"
+#include "DrawDebugHelpers.h"
 #include "RTSPlayerController.generated.h"
 
 /**
@@ -25,4 +26,6 @@ protected:
 	void SelectionPressed();
 	void SelectionReleased();
 	void MoveReleased();
+
+	TArray <ARTSSelectAndMoveCharacter*> SelectedActors;
 };

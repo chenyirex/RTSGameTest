@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "RTSSelectAndMoveCharacter.h"
 #include "RTSHUD.generated.h"
 
 /**
@@ -26,4 +27,6 @@ public:
 	FVector2D GetMousePos2D();
 
 	bool bStartSelecting = false;
+
+	TArray <ARTSSelectAndMoveCharacter*> FoundActors;
 };
