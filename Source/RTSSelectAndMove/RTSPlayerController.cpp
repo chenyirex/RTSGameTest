@@ -28,14 +28,18 @@ void ARTSPlayerController::SetupInputComponent()
 
 void ARTSPlayerController::SelectionPressed() 
 {
-	HUDPtr->InitialPoint = HUDPtr->GetMousePos2D();
-	HUDPtr->bStartSelecting = true;
+	if (HUDPtr != nullptr) {
+		HUDPtr->InitialPoint = HUDPtr->GetMousePos2D();
+		HUDPtr->bStartSelecting = true;
+	}
 }
 
 void ARTSPlayerController::SelectionReleased() 
 {
-	HUDPtr->bStartSelecting = false;
-	SelectedActors = HUDPtr->FoundActors;
+	if (HUDPtr != nullptr) {
+		HUDPtr->bStartSelecting = false;
+		SelectedActors = HUDPtr->FoundActors;
+	}
 }
 
 void ARTSPlayerController::MoveReleased() 

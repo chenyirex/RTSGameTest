@@ -19,14 +19,19 @@ class RTSSELECTANDMOVE_API ARTSHUD : public AHUD
 public:
 	virtual void DrawHUD() override;
 	// initial position of vector while we press
+	UPROPERTY()
 	FVector2D InitialPoint;
 
 	// while we hold
+	UPROPERTY()
 	FVector2D CurrentPoint;
 
+	UFUNCTION()
 	FVector2D GetMousePos2D();
 
+	UPROPERTY()
 	bool bStartSelecting = false;
 
+	UPROPERTY()
 	TArray <ARTSSelectAndMoveCharacter*> FoundActors;
 };

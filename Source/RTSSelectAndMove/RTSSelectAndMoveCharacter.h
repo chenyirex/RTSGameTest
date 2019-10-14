@@ -24,8 +24,10 @@ public:
 	/** Returns CursorToWorld subobject **/
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
 
+	UFUNCTION()
 	void SetSelected();
 
+	UFUNCTION()
 	void SetDeselected();
 
 private:

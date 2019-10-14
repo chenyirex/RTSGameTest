@@ -23,9 +23,16 @@ public:
 	ARTSHUD* HUDPtr;
 
 protected:	
+
+	UFUNCTION()
 	void SelectionPressed();
+
+	UFUNCTION()
 	void SelectionReleased();
+
+	UFUNCTION()
 	void MoveReleased();
 
+	UPROPERTY()
 	TArray <ARTSSelectAndMoveCharacter*> SelectedActors;
 };
